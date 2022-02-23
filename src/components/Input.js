@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class Input extends Component {
   render() {
-    const { label, type, id } = this.props;
+    const { label, type, id, name, value, onInputChange, onSaveButtonClick } = this.props;
 
     if (type === 'textarea') {
       return (
         <label htmlFor={ id }>
           { label }
-          <textarea id={ id } data-testid={ id } />
+          <textarea
+            onChange={ onInputChange }
+            name={ name }
+            id={ id }
+            data-testid={ id }
+            value={ value }
+          />
         </label>
       );
     }
@@ -18,7 +23,13 @@ class Input extends Component {
       return (
         <label htmlFor={ id }>
           { label }
-          <select id={ id } data-testid={ id }>
+          <select
+            onChange={ onInputChange }
+            name={ name }
+            id={ id }
+            data-testid={ id }
+            value={ value }
+          >
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
             <option value="muito raro">Muito Raro</option>
@@ -30,7 +41,14 @@ class Input extends Component {
     if (type === 'checkbox') {
       return (
         <label htmlFor={ id }>
-          <input type={ type } id={ id } data-testid={ id } />
+          <input
+            onChange={ onInputChange }
+            name={ name }
+            type={ type }
+            id={ id }
+            data-testid={ id }
+            checked={ value }
+          />
           { label }
         </label>
       );
@@ -39,7 +57,15 @@ class Input extends Component {
     if (type === 'button') {
       return (
         <label htmlFor={ id }>
-          <input type={ type } id={ id } data-testid={ id } value={ label } />
+          <input
+            onClick={ onSaveButtonClick }
+            type={ type }
+            id={ id }
+            name={ name }
+            data-testid={ id }
+            value={ label }
+            disabled={ value }
+          />
         </label>
       );
     }
@@ -47,16 +73,17 @@ class Input extends Component {
     return (
       <label htmlFor={ id }>
         { label }
-        <input type={ type } id={ id } data-testid={ id } />
+        <input
+          onChange={ onInputChange }
+          name={ name }
+          type={ type }
+          id={ id }
+          data-testid={ id }
+          value={ value }
+        />
       </label>
     );
   }
 }
-
-Input.propTypes = {
-  label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-};
 
 export default Input;
