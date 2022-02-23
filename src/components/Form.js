@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Input from './Input';
+import '../App.css';
 
 class Form extends Component {
   render() {
     return (
-      <div>
+      <div className="Form">
         <Input label="Nome" type="text" id="name-input" />
         <Input label="Descrição" type="textarea" id="description-input" />
         <Input label="Attr01" type="number" id="attr1-input" />

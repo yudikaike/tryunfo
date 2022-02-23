@@ -18,7 +18,7 @@ class Input extends Component {
       return (
         <label htmlFor={ id }>
           { label }
-          <select id={ id }>
+          <select id={ id } data-testid={ id }>
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
             <option value="muito raro">Muito Raro</option>
