@@ -55,6 +55,12 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  previewCard: PropTypes.bool.isRequired,
+  deleteCard: PropTypes.func,
+};
+
+Card.defaultProps = {
+  deleteCard: undefined,
 };
 
 export default Card;
