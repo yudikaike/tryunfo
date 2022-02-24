@@ -14,6 +14,7 @@ class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -77,14 +78,17 @@ class Form extends Component {
           id="rare-input"
           value={ cardRare }
         />
-        <Input
-          onInputChange={ onInputChange }
-          label="Super Trybe Trunfo"
-          type="checkbox"
-          name="cardTrunfo"
-          id="trunfo-input"
-          value={ cardTrunfo }
-        />
+        { hasTrunfo === false
+          ? (
+            <Input
+              onInputChange={ onInputChange }
+              label="Super Trybe Trunfo"
+              type="checkbox"
+              name="cardTrunfo"
+              id="trunfo-input"
+              value={ cardTrunfo }
+            />)
+          : <p>Você já tem um Super Trunfo em seu baralho</p>}
         <Input
           onSaveButtonClick={ onSaveButtonClick }
           onInputChange={ onInputChange }

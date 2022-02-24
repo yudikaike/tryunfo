@@ -10,6 +10,7 @@ class App extends React.Component {
     this.validateForm = this.validateForm.bind(this);
     this.verifyInputs = this.verifyInputs.bind(this);
     this.verifyAttributes = this.verifyAttributes.bind(this);
+    this.validateTrunfo = this.validateTrunfo.bind(this);
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -76,6 +77,7 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
     });
+    this.validateTrunfo();
   }
 
   validateForm() {
@@ -121,6 +123,19 @@ class App extends React.Component {
     return true;
   }
 
+  validateTrunfo() {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    } else {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
+  }
+
   render() {
     const {
       cardName,
@@ -131,6 +146,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
     } = this.state;
 
@@ -145,6 +161,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
