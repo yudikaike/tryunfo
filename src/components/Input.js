@@ -97,7 +97,11 @@ Input.propTypes = {
     PropTypes.bool,
   ]).isRequired,
   onInputChange: PropTypes.func.isRequired,
-  onSaveButtonClick: PropTypes.func.isRequired,
+  onSaveButtonClick: PropTypes.func,
+};
+
+Input.defaultProps = {
+  onSaveButtonClick: undefined,
 };
 
 export default Input;
