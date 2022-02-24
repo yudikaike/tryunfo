@@ -7,12 +7,15 @@ class App extends React.Component {
     super(props);
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.validateForm = this.validateForm.bind(this);
+    this.verifyInputs = this.verifyInputs.bind(this);
+    this.verifyAttributes = this.verifyAttributes.bind(this);
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
@@ -26,15 +29,62 @@ class App extends React.Component {
     if (type === 'checkbox') {
       this.setState({
         [name]: checked,
+      }, () => {
+        this.validateForm();
       });
     } else {
       this.setState({
         [name]: value,
+      }, () => {
+        this.validateForm();
       });
     }
   }
 
   onSaveButtonClick() {
+  }
+
+  validateForm() {
+    if (this.verifyInputs() && this.verifyAttributes()) {
+      this.setState({
+        isSaveButtonDisabled: false,
+      });
+    } else {
+      this.setState({
+        isSaveButtonDisabled: true,
+      });
+    }
+  }
+
+  verifyInputs() {
+    const { cardName, cardDescription, cardImage, cardRare } = this.state;
+    if (cardName !== ''
+    && cardDescription !== ''
+    && cardImage !== ''
+    && cardRare !== '') {
+      return true;
+    }
+    return false;
+  }
+
+  verifyAttributes() {
+    const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
+    const attr1 = parseInt(cardAttr1, 10);
+    const attr2 = parseInt(cardAttr2, 10);
+    const attr3 = parseInt(cardAttr3, 10);
+    const limit = 90;
+    const sumLimit = 210;
+
+    if ((attr1 + attr2 + attr3) > sumLimit
+    || attr1 > limit
+    || attr1 < 0
+    || attr2 > limit
+    || attr2 < 0
+    || attr3 > limit
+    || attr3 < 0) {
+      return false;
+    }
+    return true;
   }
 
   render() {
