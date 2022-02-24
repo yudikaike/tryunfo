@@ -12,6 +12,8 @@ class Card extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      previewCard,
+      deleteCard,
     } = this.props;
     return (
       <div>
@@ -26,6 +28,18 @@ class Card extends Component {
           cardTrunfo === true
             ? (<p data-testid="trunfo-card">Super Trunfo</p>)
             : null
+        }
+        {
+          previewCard === true
+            ? null
+            : (
+              <button
+                onClick={ () => deleteCard(cardName, cardTrunfo) }
+                type="button"
+                data-testid="delete-button"
+              >
+                Excluir
+              </button>)
         }
       </div>
     );
