@@ -11,6 +11,7 @@ class App extends React.Component {
     this.verifyInputs = this.verifyInputs.bind(this);
     this.verifyAttributes = this.verifyAttributes.bind(this);
     this.validateTrunfo = this.validateTrunfo.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -136,6 +137,19 @@ class App extends React.Component {
     }
   }
 
+  deleteCard(card, cardTrunfo) {
+    const { cardCatalog } = this.state;
+    this.setState({
+      cardCatalog: cardCatalog.filter((item) => item.cardName !== card),
+    });
+    if (cardTrunfo) {
+      this.setState({
+        cardTrunfo: false,
+        hasTrunfo: false,
+      });
+    }
+  }
+
   render() {
     const {
       cardName,
@@ -150,6 +164,8 @@ class App extends React.Component {
       isSaveButtonDisabled,
       cardCatalog,
     } = this.state;
+
+    const previewCard = true;
 
     return (
       <div>
@@ -176,6 +192,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          previewCard={ previewCard }
         />
         {cardCatalog.map((card, index) => (
           <Card
@@ -188,6 +205,7 @@ class App extends React.Component {
             cardImage={ card.cardImage }
             cardRare={ card.cardRare }
             cardTrunfo={ card.cardTrunfo }
+            deleteCard={ this.deleteCard }
           />
         ))}
       </div>
