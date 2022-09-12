@@ -6,7 +6,9 @@
 
 <h2>Tecnologias utilizadas</h2>
 
-<img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+<ul>
+  <li>React</li>
+</ul>
 
 <h2>Como executar o projeto</h2>
 
